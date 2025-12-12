@@ -12,6 +12,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.portfolio2.JapaneseFonts
+import com.example.portfolio2.util.WindowSizeClass
+import com.example.portfolio2.util.calculateWindowSizeClass
 
 /**
  * フッターコンポーネント
@@ -24,62 +26,132 @@ fun Footer() {
         color = MaterialTheme.colorScheme.surfaceVariant,
         tonalElevation = 2.dp
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 32.dp, horizontal = 100.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+        BoxWithConstraints(
+            modifier = Modifier.fillMaxWidth()
         ) {
-            // SNSリンクセクション
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(24.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                FooterLink("GitHub", "🔗")
-                FooterLink("LinkedIn", "💼")
-                FooterLink("Twitter", "🐦")
-                FooterLink("Email", "📧")
+            val windowSizeClass = calculateWindowSizeClass(maxWidth)
+
+            val horizontalPadding = when (windowSizeClass) {
+                WindowSizeClass.COMPACT -> 16.dp
+                WindowSizeClass.MEDIUM -> 32.dp
+                WindowSizeClass.EXPANDED -> 100.dp
             }
 
-            // 区切り線
-            Spacer(modifier = Modifier.height(8.dp))
+            val verticalPadding = when (windowSizeClass) {
+                WindowSizeClass.COMPACT -> 24.dp
+                else -> 32.dp
+            }
 
-            // コピーライト
-            Text(
-                text = "© 2025 山田 太郎. All rights reserved.",
-                fontFamily = JapaneseFonts.notoSans(),
-                fontSize = 14.sp,
-                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
-                textAlign = TextAlign.Center
-            )
+            val linkSpacing = when (windowSizeClass) {
+                WindowSizeClass.COMPACT -> 16.dp
+                WindowSizeClass.MEDIUM -> 20.dp
+                WindowSizeClass.EXPANDED -> 24.dp
+            }
 
-            // 追加情報
-            Text(
-                text = "Built with Kotlin Multiplatform & Compose",
-                fontFamily = JapaneseFonts.notoSans(),
-                fontSize = 12.sp,
-                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
-                textAlign = TextAlign.Center
-            )
+            val copyrightFontSize = when (windowSizeClass) {
+                WindowSizeClass.COMPACT -> 12.sp
+                else -> 14.sp
+            }
+
+            val infoFontSize = when (windowSizeClass) {
+                WindowSizeClass.COMPACT -> 10.sp
+                else -> 12.sp
+            }
+
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = verticalPadding, horizontal = horizontalPadding),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                // SNSリンクセクション
+                if (windowSizeClass == WindowSizeClass.COMPACT) {
+                    // モバイル: 2列のグリッドレイアウト
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(linkSpacing),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            FooterLink("GitHub", "🔗", windowSizeClass)
+                            FooterLink("LinkedIn", "💼", windowSizeClass)
+                        }
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(linkSpacing),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            FooterLink("Twitter", "🐦", windowSizeClass)
+                            FooterLink("Email", "📧", windowSizeClass)
+                        }
+                    }
+                } else {
+                    // タブレット・デスクトップ: 横並び
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(linkSpacing),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        FooterLink("GitHub", "🔗", windowSizeClass)
+                        FooterLink("LinkedIn", "💼", windowSizeClass)
+                        FooterLink("Twitter", "🐦", windowSizeClass)
+                        FooterLink("Email", "📧", windowSizeClass)
+                    }
+                }
+
+                // 区切り線
+                Spacer(modifier = Modifier.height(8.dp))
+
+                // コピーライト
+                Text(
+                    text = "© 2025 山田 太郎. All rights reserved.",
+                    fontFamily = JapaneseFonts.notoSans(),
+                    fontSize = copyrightFontSize,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth()
+                )
+
+                // 追加情報
+                Text(
+                    text = "Built with Kotlin Multiplatform & Compose",
+                    fontFamily = JapaneseFonts.notoSans(),
+                    fontSize = infoFontSize,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
         }
     }
 }
 
 @Composable
-fun FooterLink(text: String, icon: String) {
+fun FooterLink(text: String, icon: String, windowSizeClass: WindowSizeClass) {
+    val iconSize = when (windowSizeClass) {
+        WindowSizeClass.COMPACT -> 14.sp
+        else -> 16.sp
+    }
+
+    val textSize = when (windowSizeClass) {
+        WindowSizeClass.COMPACT -> 12.sp
+        WindowSizeClass.MEDIUM -> 13.sp
+        WindowSizeClass.EXPANDED -> 14.sp
+    }
+
     Row(
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = icon,
-            fontSize = 16.sp
+            fontSize = iconSize
         )
         Text(
             text = text,
             fontFamily = JapaneseFonts.notoSans(),
-            fontSize = 14.sp,
+            fontSize = textSize,
             fontWeight = FontWeight.Medium,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )

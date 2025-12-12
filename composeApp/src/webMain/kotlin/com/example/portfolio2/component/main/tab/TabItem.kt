@@ -12,12 +12,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.portfolio2.JapaneseFonts
+import com.example.portfolio2.util.WindowSizeClass
 
 @Composable
 fun TabItem(
     title: String,
     isSelected: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    windowSizeClass: WindowSizeClass
 ) {
     val backgroundColor = if (isSelected) {
         MaterialTheme.colorScheme.primaryContainer
@@ -31,6 +33,23 @@ fun TabItem(
         MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
     }
 
+    val fontSize = when (windowSizeClass) {
+        WindowSizeClass.COMPACT -> 14.sp
+        WindowSizeClass.MEDIUM -> 15.sp
+        WindowSizeClass.EXPANDED -> 16.sp
+    }
+
+    val horizontalPadding = when (windowSizeClass) {
+        WindowSizeClass.COMPACT -> 16.dp
+        WindowSizeClass.MEDIUM -> 20.dp
+        WindowSizeClass.EXPANDED -> 24.dp
+    }
+
+    val verticalPadding = when (windowSizeClass) {
+        WindowSizeClass.COMPACT -> 12.dp
+        else -> 16.dp
+    }
+
     Surface(
         onClick = onClick,
         modifier = Modifier
@@ -39,13 +58,13 @@ fun TabItem(
         shape = MaterialTheme.shapes.medium
     ) {
         Box(
-            modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp),
+            modifier = Modifier.padding(horizontal = horizontalPadding, vertical = verticalPadding),
             contentAlignment = Alignment.Center
         ) {
             Text(
                 text = title,
                 fontFamily = JapaneseFonts.notoSans(),
-                fontSize = 16.sp,
+                fontSize = fontSize,
                 fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
                 color = textColor
             )
