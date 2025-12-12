@@ -25,8 +25,8 @@ object JapaneseFonts {
      */
     @Composable
     fun mplus1p() = FontFamily(
-        Font(Res.font.mplus1p_regular, FontWeight.Normal),
-        Font(Res.font.mplus1p_bold, FontWeight.Bold)
+        Font(Res.font.MPLUS1p_Regular, FontWeight.Normal),
+        Font(Res.font.MPLUS1p_Bold, FontWeight.Bold)
     )
 }
 
