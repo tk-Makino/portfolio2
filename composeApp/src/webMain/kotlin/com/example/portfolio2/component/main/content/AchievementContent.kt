@@ -7,13 +7,17 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import com.example.portfolio2.JapaneseFonts
+import com.example.portfolio2.`object`.content.AchievementContentObject
 import com.example.portfolio2.util.WindowSizeClass
 
+/**
+ * 実績コンテンツ
+ *
+ * @param windowSizeClass
+ */
 @Composable
-fun SkillsContent(windowSizeClass: WindowSizeClass) {
-    val titleFontSize = ContentStyles.getTitleFontSize(windowSizeClass)
+fun AchievementContent(windowSizeClass: WindowSizeClass) {
     val bodyFontSize = ContentStyles.getBodyFontSize(windowSizeClass)
     val spacing = ContentStyles.getSpacing(windowSizeClass)
 
@@ -22,25 +26,10 @@ fun SkillsContent(windowSizeClass: WindowSizeClass) {
         verticalArrangement = Arrangement.spacedBy(spacing)
     ) {
         Text(
-            text = "スキル",
-            fontFamily = JapaneseFonts.notoSans(),
-            fontSize = titleFontSize,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onBackground
-        )
-
-        Text(
-            text = "ここに保有しているスキルや技術スタックを記載します。",
+            text = AchievementContentObject.ACHIEVEMENT_DETAIL,
             fontFamily = JapaneseFonts.notoSans(),
             fontSize = bodyFontSize,
             color = MaterialTheme.colorScheme.onBackground
-        )
-
-        Text(
-            text = "例：Kotlin, Compose Multiplatform, React, TypeScript など",
-            fontFamily = JapaneseFonts.notoSans(),
-            fontSize = bodyFontSize,
-            color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f)
         )
     }
 }

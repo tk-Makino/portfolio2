@@ -15,7 +15,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.portfolio2.JapaneseFonts
-import com.example.portfolio2.contents.ProfileIntroduction
+import com.example.portfolio2.`object`.ProfileIntroductionObject
 import com.example.portfolio2.util.WindowSizeClass
 
 // External function to open URL in browser
@@ -56,7 +56,7 @@ fun ProfileIntroduction(windowSizeClass: WindowSizeClass) {
     ) {
         // Name
         Text(
-            text = ProfileIntroduction.TWITTER_NAME,
+            text = ProfileIntroductionObject.TWITTER_NAME,
             fontFamily = JapaneseFonts.notoSans(),
             fontSize = titleFontSize,
             fontWeight = FontWeight.Bold,
@@ -67,7 +67,7 @@ fun ProfileIntroduction(windowSizeClass: WindowSizeClass) {
 
         // Twitter ID
         Text(
-            text = ProfileIntroduction.TWITTER_ID,
+            text = ProfileIntroductionObject.TWITTER_ID,
             fontFamily = JapaneseFonts.notoSans(),
             fontSize = subtitleFontSize,
             fontWeight = FontWeight.Medium,
@@ -86,25 +86,25 @@ fun ProfileIntroduction(windowSizeClass: WindowSizeClass) {
         ) {
             // Twitter Link
             Text(
-                text = ProfileIntroduction.TWITTER,
+                text = ProfileIntroductionObject.TWITTER,
                 fontFamily = JapaneseFonts.notoSans(),
                 fontSize = subtitleFontSize,
                 fontWeight = FontWeight.Medium,
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.clickable {
-                    openUrl(ProfileIntroduction.TWITTER_URL)
+                    openUrl(ProfileIntroductionObject.TWITTER_URL)
                 }
             )
 
             // GitHub Link
             Text(
-                text = ProfileIntroduction.GITHUB,
+                text = ProfileIntroductionObject.GITHUB,
                 fontFamily = JapaneseFonts.notoSans(),
                 fontSize = subtitleFontSize,
                 fontWeight = FontWeight.Medium,
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.clickable {
-                    openUrl(ProfileIntroduction.GITHUB_URL)
+                    openUrl(ProfileIntroductionObject.GITHUB_URL)
                 }
             )
         }

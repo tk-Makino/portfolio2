@@ -6,9 +6,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.portfolio2.component.main.content.CareerContent
+import com.example.portfolio2.component.main.content.AchievementContent
 import com.example.portfolio2.component.main.content.ProfileContent
-import com.example.portfolio2.component.main.content.SkillsContent
 import com.example.portfolio2.util.WindowSizeClass
 
 @Composable
@@ -19,7 +18,7 @@ fun ContentSection(
     val padding = when (windowSizeClass) {
         WindowSizeClass.COMPACT -> 16.dp
         WindowSizeClass.MEDIUM -> 32.dp
-        WindowSizeClass.EXPANDED -> 100.dp
+        WindowSizeClass.EXPANDED -> 50.dp
     }
 
     Box(
@@ -29,8 +28,7 @@ fun ContentSection(
     ) {
         when (selectedTabIndex) {
             0 -> ProfileContent(windowSizeClass)
-            1 -> SkillsContent(windowSizeClass)
-            2 -> CareerContent(windowSizeClass)
+            1 -> AchievementContent(windowSizeClass)
         }
     }
 }
