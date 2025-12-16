@@ -1,9 +1,9 @@
-package com.example.portfolio2.contents
+package com.example.portfolio2.`object`
 
 /**
  * ヘッダー部で使う固定情報
  */
-object ProfileIntroduction {
+object ProfileIntroductionObject {
     const val TWITTER_NAME = "ε"
     const val TWITTER_ID = "@tkearthsakura"
     const val TWITTER = "X(旧Twitter)"
