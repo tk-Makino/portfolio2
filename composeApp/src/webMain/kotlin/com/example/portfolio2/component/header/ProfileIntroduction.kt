@@ -1,7 +1,9 @@
 package com.example.portfolio2.component.header
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -13,7 +15,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.portfolio2.JapaneseFonts
+import com.example.portfolio2.contents.ProfileIntroduction
 import com.example.portfolio2.util.WindowSizeClass
+
+// External function to open URL in browser
+external fun eval(code: String)
+
+private fun openUrl(url: String) {
+    eval("window.open('$url', '_blank')")
+}
 
 @Composable
 fun ProfileIntroduction(windowSizeClass: WindowSizeClass) {
@@ -27,12 +37,6 @@ fun ProfileIntroduction(windowSizeClass: WindowSizeClass) {
         WindowSizeClass.COMPACT -> 14.sp
         WindowSizeClass.MEDIUM -> 16.sp
         WindowSizeClass.EXPANDED -> 18.sp
-    }
-
-    val descriptionFontSize = when (windowSizeClass) {
-        WindowSizeClass.COMPACT -> 12.sp
-        WindowSizeClass.MEDIUM -> 13.sp
-        WindowSizeClass.EXPANDED -> 14.sp
     }
 
     val textAlign = when (windowSizeClass) {
@@ -50,33 +54,83 @@ fun ProfileIntroduction(windowSizeClass: WindowSizeClass) {
         verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalAlignment = horizontalAlignment
     ) {
+        // Name
         Text(
-            text = "山田 太郎",
+            text = ProfileIntroduction.TWITTER_NAME,
             fontFamily = JapaneseFonts.notoSans(),
             fontSize = titleFontSize,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onPrimaryContainer,
             textAlign = textAlign,
-            modifier = if (windowSizeClass == WindowSizeClass.COMPACT) Modifier.fillMaxWidth() else Modifier
+            modifier = modifierForCompact(windowSizeClass)
         )
 
+        // Twitter ID
         Text(
-            text = "フルスタックエンジニア | Kotlin Multiplatform愛好家",
+            text = ProfileIntroduction.TWITTER_ID,
             fontFamily = JapaneseFonts.notoSans(),
             fontSize = subtitleFontSize,
             fontWeight = FontWeight.Medium,
             color = MaterialTheme.colorScheme.onPrimaryContainer,
             textAlign = textAlign,
-            modifier = if (windowSizeClass == WindowSizeClass.COMPACT) Modifier.fillMaxWidth() else Modifier
+            modifier = modifierForCompact(windowSizeClass)
         )
 
-        Text(
-            text = "Webアプリケーション開発を中心に、モダンな技術を使った開発を行っています。",
-            fontFamily = JapaneseFonts.notoSans(),
-            fontSize = descriptionFontSize,
-            color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.8f),
-            textAlign = textAlign,
-            modifier = if (windowSizeClass == WindowSizeClass.COMPACT) Modifier.fillMaxWidth() else Modifier
-        )
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(
+                space = 16.dp,
+                alignment = alignmentForWindow(windowSizeClass)
+            ),
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = modifierForCompact(windowSizeClass)
+        ) {
+            // Twitter Link
+            Text(
+                text = ProfileIntroduction.TWITTER,
+                fontFamily = JapaneseFonts.notoSans(),
+                fontSize = subtitleFontSize,
+                fontWeight = FontWeight.Medium,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.clickable {
+                    openUrl(ProfileIntroduction.TWITTER_URL)
+                }
+            )
+
+            // GitHub Link
+            Text(
+                text = ProfileIntroduction.GITHUB,
+                fontFamily = JapaneseFonts.notoSans(),
+                fontSize = subtitleFontSize,
+                fontWeight = FontWeight.Medium,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.clickable {
+                    openUrl(ProfileIntroduction.GITHUB_URL)
+                }
+            )
+        }
     }
 }
+
+/**
+ * WindowSizeClass が COMPACT の場合に幅いっぱいに広げる Modifier を返す
+ *
+ */
+private fun modifierForCompact(
+    windowSizeClass: WindowSizeClass
+): Modifier =
+    if (windowSizeClass == WindowSizeClass.COMPACT)
+        Modifier.fillMaxWidth()
+    else Modifier
+
+
+/**
+ * WindowSizeClass に応じた水平配置を返す
+ *
+ * Compact の場合は中央寄せ、それ以外は左寄せ
+ */
+private fun alignmentForWindow(
+    windowSizeClass: WindowSizeClass
+): Alignment.Horizontal =
+    if (windowSizeClass == WindowSizeClass.COMPACT)
+        Alignment.CenterHorizontally
+    else Alignment.Start

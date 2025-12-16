@@ -8,29 +8,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.portfolio2.JapaneseFonts
 import com.example.portfolio2.util.WindowSizeClass
 
 @Composable
 fun SkillsContent(windowSizeClass: WindowSizeClass) {
-    val titleFontSize = when (windowSizeClass) {
-        WindowSizeClass.COMPACT -> 20.sp
-        WindowSizeClass.MEDIUM -> 24.sp
-        WindowSizeClass.EXPANDED -> 28.sp
-    }
-
-    val bodyFontSize = when (windowSizeClass) {
-        WindowSizeClass.COMPACT -> 14.sp
-        WindowSizeClass.MEDIUM -> 15.sp
-        WindowSizeClass.EXPANDED -> 16.sp
-    }
-
-    val spacing = when (windowSizeClass) {
-        WindowSizeClass.COMPACT -> 12.dp
-        else -> 16.dp
-    }
+    val titleFontSize = ContentStyles.getTitleFontSize(windowSizeClass)
+    val bodyFontSize = ContentStyles.getBodyFontSize(windowSizeClass)
+    val spacing = ContentStyles.getSpacing(windowSizeClass)
 
     Column(
         modifier = Modifier.fillMaxSize(),
