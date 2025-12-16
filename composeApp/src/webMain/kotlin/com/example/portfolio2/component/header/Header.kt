@@ -44,7 +44,7 @@ fun Header() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(
-                                horizontal = if (windowSizeClass == WindowSizeClass.MEDIUM) 24.dp else 48.dp,
+                                horizontal = if (windowSizeClass == WindowSizeClass.MEDIUM) 32.dp else 100.dp,
                                 vertical = 32.dp
                             ),
                         verticalAlignment = Alignment.CenterVertically,
