@@ -6,7 +6,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.portfolio2.contents.tab.TabSectionContents
+import com.example.portfolio2.`object`.tab.TabSectionObject
 import com.example.portfolio2.util.WindowSizeClass
 
 
@@ -18,9 +18,9 @@ fun TabSection(
     windowSizeClass: WindowSizeClass
 ) {
     val tabs = listOf(
-        TabSectionContents.PROFILE,
-        TabSectionContents.SKILLS,
-        TabSectionContents.EXPERIENCE,
+        TabSectionObject.PROFILE,
+        TabSectionObject.SKILLS,
+        TabSectionObject.EXPERIENCE,
     )
 
     val horizontalPadding = when (windowSizeClass) {

@@ -11,7 +11,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.portfolio2.JapaneseFonts
-import com.example.portfolio2.contents.FooterContents
+import com.example.portfolio2.`object`.FooterObject
 import com.example.portfolio2.util.WindowSizeClass
 import com.example.portfolio2.util.calculateWindowSizeClass
 
@@ -56,7 +56,7 @@ fun Footer() {
             ) {
                 // 追加情報
                 Text(
-                    text = FooterContents.BUILT_INFORMATION,
+                    text = FooterObject.BUILT_INFORMATION,
                     fontFamily = JapaneseFonts.notoSans(),
                     fontSize = infoFontSize,
                     color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
