@@ -9,8 +9,13 @@ import androidx.compose.ui.unit.dp
 import com.example.portfolio2.`object`.tab.TabSectionObject
 import com.example.portfolio2.util.WindowSizeClass
 
-
-
+/**
+ * タブセクション
+ *
+ * @param selectedTabIndex
+ * @param onTabSelected
+ * @param windowSizeClass
+ */
 @Composable
 fun TabSection(
     selectedTabIndex: Int,
@@ -19,8 +24,7 @@ fun TabSection(
 ) {
     val tabs = listOf(
         TabSectionObject.PROFILE,
-        TabSectionObject.SKILLS,
-        TabSectionObject.EXPERIENCE,
+        TabSectionObject.ACHIEVEMENT,
     )
 
     val horizontalPadding = when (windowSizeClass) {

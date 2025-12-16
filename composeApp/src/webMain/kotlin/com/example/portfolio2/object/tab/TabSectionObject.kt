@@ -4,5 +4,5 @@ object TabSectionObject {
     const val PROFILE = "プロフィール"
     const val SKILLS = "スキル"
     const val EXPERIENCE = "経歴"
-    const val ACHIVEMENT ="実績"
+    const val ACHIEVEMENT ="実績"
 }
