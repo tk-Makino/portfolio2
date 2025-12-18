@@ -12,17 +12,6 @@ import com.example.portfolio2.util.WindowSizeClass
 object ContentStyles {
 
     /**
-     * ウィンドウサイズに応じたタイトルフォントサイズを取得
-     */
-    fun getTitleFontSize(windowSizeClass: WindowSizeClass): TextUnit {
-        return when (windowSizeClass) {
-            WindowSizeClass.COMPACT -> 20.sp
-            WindowSizeClass.MEDIUM -> 24.sp
-            WindowSizeClass.EXPANDED -> 28.sp
-        }
-    }
-
-    /**
      * ウィンドウサイズに応じた本文フォントサイズを取得
      */
     fun getBodyFontSize(windowSizeClass: WindowSizeClass): TextUnit {
