@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.portfolio2.`object`.tab.TabSectionObject
+import com.example.portfolio2.theme.ThemeSpacing
 import com.example.portfolio2.util.WindowSizeClass
 
 /**
@@ -28,9 +29,6 @@ fun TabSection(
         TabSectionObject.ACHIEVEMENT,
     )
 
-    val horizontalPadding = horizontalPaddingFor(windowSizeClass)
-    val verticalPadding = verticalPaddingFor(windowSizeClass)
-
     Surface(
         modifier = Modifier.fillMaxWidth(),
         color = MaterialTheme.colorScheme.surface,
@@ -41,8 +39,8 @@ fun TabSection(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(
-                    horizontal = horizontalPadding,
-                    vertical = verticalPadding
+                    horizontal = ThemeSpacing.HorizontalPadding.tab(windowSizeClass),
+                    vertical = ThemeSpacing.VerticalPadding.tab(windowSizeClass)
                 ),
             horizontalArrangement = horizontalArrangementFor(windowSizeClass)
         ) {
@@ -56,29 +54,6 @@ fun TabSection(
             }
         }
     }
-}
-
-/**
- * 水平パディング取得
- *
- * @param windowSizeClass
- * @return Dp
- */
-private fun horizontalPaddingFor(windowSizeClass: WindowSizeClass): Dp = when (windowSizeClass) {
-    WindowSizeClass.COMPACT -> 8.dp
-    WindowSizeClass.MEDIUM -> 24.dp
-    WindowSizeClass.EXPANDED -> 100.dp
-}
-
-/**
- * 垂直パディング取得
- *
- * @param windowSizeClass
- * @return Dp
- */
-private fun verticalPaddingFor(windowSizeClass: WindowSizeClass): Dp = when (windowSizeClass) {
-    WindowSizeClass.COMPACT -> 8.dp
-    else -> 12.dp
 }
 
 /**

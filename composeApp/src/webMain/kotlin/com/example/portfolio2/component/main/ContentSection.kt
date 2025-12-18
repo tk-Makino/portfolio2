@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.portfolio2.component.main.content.AchievementContent
 import com.example.portfolio2.component.main.content.ProfileContent
+import com.example.portfolio2.theme.ThemeSpacing
 import com.example.portfolio2.util.WindowSizeClass
 
 @Composable
@@ -15,16 +16,10 @@ fun ContentSection(
     selectedTabIndex: Int,
     windowSizeClass: WindowSizeClass
 ) {
-    val padding = when (windowSizeClass) {
-        WindowSizeClass.COMPACT -> 16.dp
-        WindowSizeClass.MEDIUM -> 32.dp
-        WindowSizeClass.EXPANDED -> 50.dp
-    }
-
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(padding)
+            .padding(ThemeSpacing.HorizontalPadding.contentSection(windowSizeClass))
     ) {
         when (selectedTabIndex) {
             0 -> ProfileContent(windowSizeClass)

@@ -2,8 +2,8 @@ package com.example.portfolio2.component.main.content
 
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.example.portfolio2.theme.ThemeSpacing
+import com.example.portfolio2.theme.TypographyStyles
 import com.example.portfolio2.util.WindowSizeClass
 
 /**
@@ -15,21 +15,14 @@ object ContentStyles {
      * ウィンドウサイズに応じた本文フォントサイズを取得
      */
     fun getBodyFontSize(windowSizeClass: WindowSizeClass): TextUnit {
-        return when (windowSizeClass) {
-            WindowSizeClass.COMPACT -> 14.sp
-            WindowSizeClass.MEDIUM -> 15.sp
-            WindowSizeClass.EXPANDED -> 16.sp
-        }
+        return TypographyStyles.body(windowSizeClass)
     }
 
     /**
      * ウィンドウサイズに応じたスペーシングを取得
      */
     fun getSpacing(windowSizeClass: WindowSizeClass): Dp {
-        return when (windowSizeClass) {
-            WindowSizeClass.COMPACT -> 12.dp
-            else -> 16.dp
-        }
+        return ThemeSpacing.Spacing.content(windowSizeClass)
     }
 }
 

@@ -16,6 +16,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.portfolio2.JapaneseFonts
 import com.example.portfolio2.`object`.ProfileIntroductionObject
+import com.example.portfolio2.theme.ThemeSpacing
+import com.example.portfolio2.theme.TypographyStyles
 import com.example.portfolio2.util.WindowSizeClass
 
 // External function to open URL in browser
@@ -27,17 +29,8 @@ private fun openUrl(url: String) {
 
 @Composable
 fun ProfileIntroduction(windowSizeClass: WindowSizeClass) {
-    val titleFontSize = when (windowSizeClass) {
-        WindowSizeClass.COMPACT -> 24.sp
-        WindowSizeClass.MEDIUM -> 28.sp
-        WindowSizeClass.EXPANDED -> 32.sp
-    }
-
-    val subtitleFontSize = when (windowSizeClass) {
-        WindowSizeClass.COMPACT -> 14.sp
-        WindowSizeClass.MEDIUM -> 16.sp
-        WindowSizeClass.EXPANDED -> 18.sp
-    }
+    val titleFontSize = TypographyStyles.titleLarge(windowSizeClass)
+    val subtitleFontSize = TypographyStyles.titleMedium(windowSizeClass)
 
     val textAlign = when (windowSizeClass) {
         WindowSizeClass.COMPACT -> TextAlign.Center
@@ -51,7 +44,7 @@ fun ProfileIntroduction(windowSizeClass: WindowSizeClass) {
 
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(ThemeSpacing.Spacing.small),
         horizontalAlignment = horizontalAlignment
     ) {
         // Name
@@ -78,7 +71,7 @@ fun ProfileIntroduction(windowSizeClass: WindowSizeClass) {
 
         Row(
             horizontalArrangement = Arrangement.spacedBy(
-                space = 16.dp,
+                space = ThemeSpacing.Spacing.medium,
                 alignment = alignmentForWindow(windowSizeClass)
             ),
             verticalAlignment = Alignment.CenterVertically,
