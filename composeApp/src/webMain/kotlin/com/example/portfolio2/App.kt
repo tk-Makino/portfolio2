@@ -8,22 +8,30 @@ import androidx.compose.ui.Modifier
 import com.example.portfolio2.component.Footer
 import com.example.portfolio2.component.header.Header
 import com.example.portfolio2.component.main.MainContent
+import com.example.portfolio2.util.calculateWindowSizeClass
 
 @Composable
 fun App() {
-    Column(
+    BoxWithConstraints(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
     ) {
-        // ヘッダー
-        Header()
+        // WindowSizeClassを一度だけ計算
+        val windowSizeClass = calculateWindowSizeClass(maxWidth)
+        
+        Column(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            // ヘッダー
+            Header(windowSizeClass)
 
-        // 中央部
-        MainContent()
+            // 中央部
+            MainContent(windowSizeClass)
 
-        // フッター
-        Footer()
+            // フッター
+            Footer(windowSizeClass)
+        }
     }
 }
 

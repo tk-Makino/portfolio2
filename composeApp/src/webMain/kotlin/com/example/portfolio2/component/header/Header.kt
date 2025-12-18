@@ -8,23 +8,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.portfolio2.util.WindowSizeClass
-import com.example.portfolio2.util.calculateWindowSizeClass
 
 /**
  * ヘッダーコンポーネント
  * サイト上部に表示されるプロフィールエリア
  */
 @Composable
-fun Header() {
+fun Header(windowSizeClass: WindowSizeClass) {
     Surface(
         modifier = Modifier.fillMaxWidth(),
         color = MaterialTheme.colorScheme.primaryContainer,
         tonalElevation = 2.dp
     ) {
-        BoxWithConstraints(
+        Box(
             modifier = Modifier.fillMaxWidth()
         ) {
-            when (val windowSizeClass = calculateWindowSizeClass(maxWidth)) {
+            when (windowSizeClass) {
                 WindowSizeClass.COMPACT -> {
                     // モバイル: 縦並びレイアウト
                     Column(

@@ -13,24 +13,21 @@ import androidx.compose.ui.unit.sp
 import com.example.portfolio2.JapaneseFonts
 import com.example.portfolio2.`object`.FooterObject
 import com.example.portfolio2.util.WindowSizeClass
-import com.example.portfolio2.util.calculateWindowSizeClass
 
 /**
  * フッターコンポーネント
  * サイト下部に表示される情報エリア
  */
 @Composable
-fun Footer() {
+fun Footer(windowSizeClass: WindowSizeClass) {
     Surface(
         modifier = Modifier.fillMaxWidth(),
         color = MaterialTheme.colorScheme.surfaceVariant,
         tonalElevation = 2.dp
     ) {
-        BoxWithConstraints(
+        Box(
             modifier = Modifier.fillMaxWidth()
         ) {
-            val windowSizeClass = calculateWindowSizeClass(maxWidth)
-
             val horizontalPadding = when (windowSizeClass) {
                 WindowSizeClass.COMPACT -> 16.dp
                 WindowSizeClass.MEDIUM -> 32.dp
