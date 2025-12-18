@@ -4,32 +4,13 @@
 
 ## 利用可能なフォント
 
-### 1. Noto Sans JP（ゴシック体）
+### Noto Sans JP（ゴシック体）
 標準的なサンセリフフォント。UI全般に適しています。
 
 ```kotlin
 Text(
     text = "テキスト",
     fontFamily = JapaneseFonts.notoSans()
-)
-```
-
-### 2. M PLUS 1p（丸ゴシック風）
-カジュアルで親しみやすい印象のフォント。RegularとBoldの2つのウェイトが使用可能です。
-
-```kotlin
-// Regular
-Text(
-    text = "テキスト",
-    fontFamily = JapaneseFonts.mplus1p(),
-    fontWeight = FontWeight.Normal
-)
-
-// Bold
-Text(
-    text = "テキスト",
-    fontFamily = JapaneseFonts.mplus1p(),
-    fontWeight = FontWeight.Bold
 )
 ```
 
