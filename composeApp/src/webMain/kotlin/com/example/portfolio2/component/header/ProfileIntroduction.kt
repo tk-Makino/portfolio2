@@ -17,13 +17,7 @@ import com.example.portfolio2.`object`.ProfileIntroductionObject
 import com.example.portfolio2.theme.ThemeSpacing
 import com.example.portfolio2.theme.TypographyStyles
 import com.example.portfolio2.util.WindowSizeClass
-
-// External function to open URL in browser
-external fun eval(code: String)
-
-private fun openUrl(url: String) {
-    eval("window.open('$url', '_blank')")
-}
+import com.example.portfolio2.util.openExternalUrl
 
 @Composable
 fun ProfileIntroduction(windowSizeClass: WindowSizeClass) {
@@ -83,7 +77,7 @@ fun ProfileIntroduction(windowSizeClass: WindowSizeClass) {
                 fontWeight = FontWeight.Medium,
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.clickable {
-                    openUrl(ProfileIntroductionObject.TWITTER_URL)
+                    openExternalUrl(ProfileIntroductionObject.TWITTER_URL)
                 }
             )
 
@@ -95,7 +89,7 @@ fun ProfileIntroduction(windowSizeClass: WindowSizeClass) {
                 fontWeight = FontWeight.Medium,
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.clickable {
-                    openUrl(ProfileIntroductionObject.GITHUB_URL)
+                    openExternalUrl(ProfileIntroductionObject.GITHUB_URL)
                 }
             )
         }
