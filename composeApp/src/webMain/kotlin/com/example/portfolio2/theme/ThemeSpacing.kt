@@ -13,53 +13,65 @@ import com.example.portfolio2.util.WindowSizeClass
 object ThemeSpacing {
     
     /**
+     * 共通のパディング計算ヘルパー関数
+     * WindowSizeClassに応じて適切な値を返す
+     */
+    private fun getResponsivePadding(
+        windowSizeClass: WindowSizeClass,
+        compact: Dp,
+        medium: Dp,
+        expanded: Dp
+    ): Dp = when (windowSizeClass) {
+        WindowSizeClass.COMPACT -> compact
+        WindowSizeClass.MEDIUM -> medium
+        WindowSizeClass.EXPANDED -> expanded
+    }
+    
+    /**
+     * 2段階のパディング計算ヘルパー関数（COMPACT vs その他）
+     */
+    private fun getResponsivePaddingTwoTier(
+        windowSizeClass: WindowSizeClass,
+        compact: Dp,
+        other: Dp
+    ): Dp = when (windowSizeClass) {
+        WindowSizeClass.COMPACT -> compact
+        else -> other
+    }
+    
+    /**
      * 水平パディング
      */
     object HorizontalPadding {
         /**
          * ページコンテンツの水平パディング
          */
-        fun page(windowSizeClass: WindowSizeClass): Dp = when (windowSizeClass) {
-            WindowSizeClass.COMPACT -> 16.dp
-            WindowSizeClass.MEDIUM -> 32.dp
-            WindowSizeClass.EXPANDED -> 100.dp
-        }
+        fun page(windowSizeClass: WindowSizeClass): Dp = 
+            getResponsivePadding(windowSizeClass, 16.dp, 32.dp, 100.dp)
         
         /**
          * ヘッダー/フッター用の水平パディング
          */
-        fun container(windowSizeClass: WindowSizeClass): Dp = when (windowSizeClass) {
-            WindowSizeClass.COMPACT -> 16.dp
-            WindowSizeClass.MEDIUM -> 32.dp
-            WindowSizeClass.EXPANDED -> 100.dp
-        }
+        fun container(windowSizeClass: WindowSizeClass): Dp = 
+            getResponsivePadding(windowSizeClass, 16.dp, 32.dp, 100.dp)
         
         /**
          * タブセクションの水平パディング
          */
-        fun tab(windowSizeClass: WindowSizeClass): Dp = when (windowSizeClass) {
-            WindowSizeClass.COMPACT -> 8.dp
-            WindowSizeClass.MEDIUM -> 24.dp
-            WindowSizeClass.EXPANDED -> 100.dp
-        }
+        fun tab(windowSizeClass: WindowSizeClass): Dp = 
+            getResponsivePadding(windowSizeClass, 8.dp, 24.dp, 100.dp)
         
         /**
          * タブアイテムの水平パディング
          */
-        fun tabItem(windowSizeClass: WindowSizeClass): Dp = when (windowSizeClass) {
-            WindowSizeClass.COMPACT -> 16.dp
-            WindowSizeClass.MEDIUM -> 20.dp
-            WindowSizeClass.EXPANDED -> 24.dp
-        }
+        fun tabItem(windowSizeClass: WindowSizeClass): Dp = 
+            getResponsivePadding(windowSizeClass, 16.dp, 20.dp, 24.dp)
         
         /**
          * コンテンツセクションの水平パディング
          */
-        fun contentSection(windowSizeClass: WindowSizeClass): Dp = when (windowSizeClass) {
-            WindowSizeClass.COMPACT -> 16.dp
-            WindowSizeClass.MEDIUM -> 32.dp
-            WindowSizeClass.EXPANDED -> 50.dp
-        }
+        fun contentSection(windowSizeClass: WindowSizeClass): Dp = 
+            getResponsivePadding(windowSizeClass, 16.dp, 32.dp, 50.dp)
     }
     
     /**
@@ -69,34 +81,26 @@ object ThemeSpacing {
         /**
          * ヘッダーの垂直パディング
          */
-        fun header(windowSizeClass: WindowSizeClass): Dp = when (windowSizeClass) {
-            WindowSizeClass.COMPACT -> 24.dp
-            else -> 32.dp
-        }
+        fun header(windowSizeClass: WindowSizeClass): Dp = 
+            getResponsivePaddingTwoTier(windowSizeClass, 24.dp, 32.dp)
         
         /**
          * フッターの垂直パディング
          */
-        fun footer(windowSizeClass: WindowSizeClass): Dp = when (windowSizeClass) {
-            WindowSizeClass.COMPACT -> 24.dp
-            else -> 32.dp
-        }
+        fun footer(windowSizeClass: WindowSizeClass): Dp = 
+            getResponsivePaddingTwoTier(windowSizeClass, 24.dp, 32.dp)
         
         /**
          * タブセクションの垂直パディング
          */
-        fun tab(windowSizeClass: WindowSizeClass): Dp = when (windowSizeClass) {
-            WindowSizeClass.COMPACT -> 8.dp
-            else -> 12.dp
-        }
+        fun tab(windowSizeClass: WindowSizeClass): Dp = 
+            getResponsivePaddingTwoTier(windowSizeClass, 8.dp, 12.dp)
         
         /**
          * タブアイテムの垂直パディング
          */
-        fun tabItem(windowSizeClass: WindowSizeClass): Dp = when (windowSizeClass) {
-            WindowSizeClass.COMPACT -> 12.dp
-            else -> 16.dp
-        }
+        fun tabItem(windowSizeClass: WindowSizeClass): Dp = 
+            getResponsivePaddingTwoTier(windowSizeClass, 12.dp, 16.dp)
     }
     
     /**
@@ -106,19 +110,14 @@ object ThemeSpacing {
         /**
          * ヘッダー内の要素間スペース
          */
-        fun header(windowSizeClass: WindowSizeClass): Dp = when (windowSizeClass) {
-            WindowSizeClass.COMPACT -> 16.dp
-            WindowSizeClass.MEDIUM -> 32.dp
-            WindowSizeClass.EXPANDED -> 48.dp
-        }
+        fun header(windowSizeClass: WindowSizeClass): Dp = 
+            getResponsivePadding(windowSizeClass, 16.dp, 32.dp, 48.dp)
         
         /**
          * コンテンツ要素間の標準スペース
          */
-        fun content(windowSizeClass: WindowSizeClass): Dp = when (windowSizeClass) {
-            WindowSizeClass.COMPACT -> 12.dp
-            else -> 16.dp
-        }
+        fun content(windowSizeClass: WindowSizeClass): Dp = 
+            getResponsivePaddingTwoTier(windowSizeClass, 12.dp, 16.dp)
         
         /**
          * 小さな要素間のスペース（例：プロフィール情報内）
@@ -138,10 +137,7 @@ object ThemeSpacing {
         /**
          * プロフィールアイコンのサイズ
          */
-        fun profile(windowSizeClass: WindowSizeClass): Dp = when (windowSizeClass) {
-            WindowSizeClass.COMPACT -> 100.dp
-            WindowSizeClass.MEDIUM -> 110.dp
-            WindowSizeClass.EXPANDED -> 120.dp
-        }
+        fun profile(windowSizeClass: WindowSizeClass): Dp = 
+            getResponsivePadding(windowSizeClass, 100.dp, 110.dp, 120.dp)
     }
 }
