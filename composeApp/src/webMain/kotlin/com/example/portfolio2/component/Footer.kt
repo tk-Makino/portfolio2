@@ -9,9 +9,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.portfolio2.JapaneseFonts
 import com.example.portfolio2.`object`.FooterObject
+import com.example.portfolio2.theme.ThemeSpacing
+import com.example.portfolio2.theme.TypographyStyles
 import com.example.portfolio2.util.WindowSizeClass
 
 /**
@@ -28,34 +29,21 @@ fun Footer(windowSizeClass: WindowSizeClass) {
         Box(
             modifier = Modifier.fillMaxWidth()
         ) {
-            val horizontalPadding = when (windowSizeClass) {
-                WindowSizeClass.COMPACT -> 16.dp
-                WindowSizeClass.MEDIUM -> 32.dp
-                WindowSizeClass.EXPANDED -> 100.dp
-            }
-
-            val verticalPadding = when (windowSizeClass) {
-                WindowSizeClass.COMPACT -> 24.dp
-                else -> 32.dp
-            }
-
-            val infoFontSize = when (windowSizeClass) {
-                WindowSizeClass.COMPACT -> 10.sp
-                else -> 12.sp
-            }
-
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = verticalPadding, horizontal = horizontalPadding),
+                    .padding(
+                        vertical = ThemeSpacing.VerticalPadding.footer(windowSizeClass),
+                        horizontal = ThemeSpacing.HorizontalPadding.container(windowSizeClass)
+                    ),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+                verticalArrangement = Arrangement.spacedBy(ThemeSpacing.Spacing.medium)
             ) {
                 // 追加情報
                 Text(
                     text = FooterObject.BUILT_INFORMATION,
                     fontFamily = JapaneseFonts.notoSans(),
-                    fontSize = infoFontSize,
+                    fontSize = TypographyStyles.caption(windowSizeClass),
                     color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
                     textAlign = TextAlign.Center,
                     modifier = Modifier.fillMaxWidth()

@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.portfolio2.theme.ThemeSpacing
 import com.example.portfolio2.util.WindowSizeClass
 
 /**
@@ -29,9 +30,14 @@ fun Header(windowSizeClass: WindowSizeClass) {
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(horizontal = 16.dp, vertical = 24.dp),
+                            .padding(
+                                horizontal = ThemeSpacing.HorizontalPadding.container(windowSizeClass),
+                                vertical = ThemeSpacing.VerticalPadding.header(windowSizeClass)
+                            ),
                         horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.spacedBy(16.dp)
+                        verticalArrangement = Arrangement.spacedBy(
+                            ThemeSpacing.Spacing.header(windowSizeClass)
+                        )
                     ) {
                         ProfileIcon(windowSizeClass)
                         ProfileIntroduction(windowSizeClass)
@@ -43,12 +49,12 @@ fun Header(windowSizeClass: WindowSizeClass) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(
-                                horizontal = if (windowSizeClass == WindowSizeClass.MEDIUM) 32.dp else 100.dp,
-                                vertical = 32.dp
+                                horizontal = ThemeSpacing.HorizontalPadding.container(windowSizeClass),
+                                vertical = ThemeSpacing.VerticalPadding.header(windowSizeClass)
                             ),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(
-                            if (windowSizeClass == WindowSizeClass.MEDIUM) 32.dp else 48.dp
+                            ThemeSpacing.Spacing.header(windowSizeClass)
                         )
                     ) {
                         ProfileIcon(windowSizeClass)
